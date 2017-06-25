@@ -1,59 +1,66 @@
-<!DOCTYPE html>
 <?php
-    $person1_name = $_GET["person1_name"];
-    $person2_name = $_GET["person2_name"];
-    $person3_name = $_GET["person3_name"];
-    $person1_hangout = $_GET["person1_hangout"];
-    $person2_hangout = $_GET["person2_hangout"];
-    $person3_hangout = $_GET["person3_hangout"];
-    $friends[$person1_name] = $person1_hangout;
-    $friends[$person2_name] = $person2_hangout;
-    $friends[$person3_name] = $person3_hangout;
+    class Contact
+    {
+        public $name;
+        public $phone;
+        public $address;
+        public $image_path;
+    }
+
+    $hendrix = new Contact();
+    $hendrix->name = "Jimi Hendrix";
+    $hendrix->phone = "503-826-9371";
+    $hendrix->address = "208 SW 5th st. Portland, OR 97204";
+    $hendrix->image_path = "images/hendrix.jpg";
+
+    $elvis = new Contact();
+    $elvis->name = "Elvis Presley";
+    $elvis->phone = "617-356-3571";
+    $elvis->address = "Graceland";
+    $elvis->image_path = "images/elvis.jpg";
+
+    $einstein = new Contact();
+    $einstein->name = "Albert Einstein";
+    $einstein->phone = "415-738-4935";
+    $einstein->address = "3718 MLK blvd. Oakland, CA 94609";
+    $einstein->image_path = "images/einstein.jpg";
+
+    $marie = new Contact();
+    $marie->name = "Marie Curie";
+    $marie->phone = "432-154-3523";
+    $marie->address = "1911 West 1st Ave. Fictional, OR 44556";
+    $marie->image_path = "images/marie.jpg";
+
+    $janis = new Contact();
+    $janis->name = "Janis Joplin";
+    $janis->phone = "415-124-2445";
+    $janis->address = "Haight Ashbury, San Francisco, CA 94117";
+    $janis->image_path = "images/janis.jpg";
+
+    $address_book = array($hendrix, $elvis, $einstein, $marie, $janis);
  ?>
-<html>
-  <head>
-    <title></title>
+ <!DOCTYPE html>
+ <html>
+     <link rel="stylesheet" type="text/css" href="styles.css">
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <title>address book</title>
   </head>
   <body>
     <div class="container">
-        <h1>Let's make you an address book.</h1>
-        <form action="index.php">
-            <div class="form-group">
-                <label for="person1_name">Name: </label>
-                <input id="person1_name" name="person1_name" class="form-control" type="text">
-            </div>
-            <div class="form-group">
-                <label for="person1_hangout">Where you hangout: </label>
-                <input id="person1_hangout" name="person1_hangout" class="form-control" type="text">
-            </div>
-            <div class="form-group">
-                <label for="person2_name">Name: </label>
-                <input id="person2_name" name="person2_name" class="form-control" type="text">
-            </div>
-            <div class="form-group">
-                <label for="person2_hangout">Where you hangout: </label>
-                <input id="person2_hangout" name="person2_hangout" class="form-control" type="text">
-            </div>
-            <div class="form-group">
-                <label for="person3_name">Name: </label>
-                <input id="person3_name" name="person3_name" class="form-control" type="text">
-            </div>
-            <div class="form-group">
-                <label for="person3_hangout">where you hang out </label>
-                <input id="person3_hangout" name="person3_hangout" class="form-control" type="text">
-            </div>
-
-            <button class="btn-info" type="submit">Create</button>
-        </form>
-
-    <ul>
-        <?php
-            foreach ($friends as $name => $hangout) {
-                if ($name && $hangout) {
-                echo "<li>" . "<h1>" . "$name:" . "</h1>" . "<h3>" .  "$hangout" . "</h3>" . "</li>";
+        <h1>Address Book</h1>
+        <ul>
+            <?php
+                foreach ($address_book as $contact) {
+                    echo "<li>";
+                    echo $contact->name;
+                    echo "<ul>";
+                    echo "<li><img src='$contact->image_path'></li>";
+                    echo "<li> $contact->phone </li>";
+                    echo "<li> $contact->address </li>";
+                    echo "</ul>";
+                    echo "</li>";
                 }
-            }
-        ?>
-</div>
+             ?>
+        </ul>
   </body>
 </html>
