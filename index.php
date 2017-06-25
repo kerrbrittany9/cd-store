@@ -49,7 +49,9 @@
     <ul>
         <?php
             foreach ($friends as $name => $hangout) {
+                if ($name && $hangout) {
                 echo "<li>" . "<h1>" . "$name:" . "</h1>" . "<h3>" .  "$hangout" . "</h3>" . "</li>";
+                }
             }
         ?>
 </div>
