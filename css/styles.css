@@ -10,3 +10,8 @@
 .contact:hover {
   text-decoration: underline;
 }
+
+body {
+  font-family: 'Spectral', serif;
+  background-color: tan;
+}
