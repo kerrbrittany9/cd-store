@@ -1,66 +1,69 @@
 <?php
-    class Contact
-    {
-        public $name;
-        public $phone;
-        public $address;
-        public $image_path;
+
+class CD
+{
+        public $title;
+        public $artist;
+        public $cover_art;
+        private $price;
     }
 
-    $hendrix = new Contact();
-    $hendrix->name = "Jimi Hendrix";
-    $hendrix->phone = "503-826-9371";
-    $hendrix->address = "208 SW 5th st. Portland, OR 97204";
-    $hendrix->image_path = "images/hendrix.jpg";
 
-    $elvis = new Contact();
-    $elvis->name = "Elvis Presley";
-    $elvis->phone = "617-356-3571";
-    $elvis->address = "Graceland";
-    $elvis->image_path = "images/elvis.jpg";
+    function __construct($album_name, $band_name, $image_path, $album_price = 10.99)
+    {
 
-    $einstein = new Contact();
-    $einstein->name = "Albert Einstein";
-    $einstein->phone = "415-738-4935";
-    $einstein->address = "3718 MLK blvd. Oakland, CA 94609";
-    $einstein->image_path = "images/einstein.jpg";
+      $this->title = $album_name;
+      $this->artist = $band_name;
+      $this->cover_art = $image_path;
+      $this->price = $album_price;
+    }
 
-    $marie = new Contact();
-    $marie->name = "Marie Curie";
-    $marie->phone = "432-154-3523";
-    $marie->address = "1911 West 1st Ave. Fictional, OR 44556";
-    $marie->image_path = "images/marie.jpg";
+    function setPrice($new_price)
+  {
+      $float_price = (float) $new_price;
+      if ($float_price != 0) {
+          $formatted_price = number_format($float_price, 2);
+          $this->price = $formatted_price;
+      }
+  }
+    function getPrice()
+    {
+        return $this->price;
+      }
+  }
 
-    $janis = new Contact();
-    $janis->name = "Janis Joplin";
-    $janis->phone = "415-124-2445";
-    $janis->address = "Haight Ashbury, San Francisco, CA 94117";
-    $janis->image_path = "images/janis.jpg";
+    $first_cd = new CD("Master of Reality"; "Black Sabbath", "images/reality.jpg");
+    $second_cd = new CD("Electric Ladyland"; "Jimi Hendrix"; "images/ladyland.jpg");
+    $third_cd = new CD("Nevermind", "Nirvana", "images/nevermind.jpg");
+    $fourth_cd= new CD("I don't get it", "Pork Lion", "images/porklion.jpg", 49.99);
+    fourth_cd->setPrice = ("1.395");
 
-    $address_book = array($hendrix, $elvis, $einstein, $marie, $janis);
- ?>
- <!DOCTYPE html>
- <html>
-     <link rel="stylesheet" type="text/css" href="styles.css">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <title>address book</title>
-  </head>
-  <body>
+   $cds = array($first_cd, $second_cd, $third_cd, $fourth_cd);
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+    <title>My CD Store</title>
+</head>
+<body>
     <div class="container">
-        <h1>Address Book</h1>
-        <ul>
-            <?php
-                foreach ($address_book as $contact) {
-                    echo "<li>";
-                    echo $contact->name;
-                    echo "<ul>";
-                    echo "<li><img src='$contact->image_path'></li>";
-                    echo "<li> $contact->phone </li>";
-                    echo "<li> $contact->address </li>";
-                    echo "</ul>";
-                    echo "</li>";
-                }
-             ?>
-        </ul>
-  </body>
+        <?php
+            foreach ($cds as $album) {
+              $cd_price = $album->getPrice();
+                echo "<div class='row'>
+                    <div class='col-md-6'>
+                        <img src='$album->cover_art'>
+                    </div>
+                    <div class='col-md-6'>
+                        <p>$album->title</p>
+                        <p>By $album->artist</p>
+                        <p>$$cd_price</p>
+                    </div>
+                </div>
+                ";
+            }
+        ?>
+      </div>
+</body>
 </html>
